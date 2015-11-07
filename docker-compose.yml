@@ -1,0 +1,22 @@
+build:
+  container_name: nodejsSample_build
+  command: "/bin/bash -l -c 'npm i && node_modules/.bin/grunt buildDev'"
+
+test:
+  container_name: nodejsSample_test
+  command: "/bin/bash -l -c 'node_modules/.bin/grunt test'"
+
+web:
+  container_name: nodejsSample
+  command: "/bin/bash -l -c 'npm start'"
+
+mysql:
+  container_name: nodejsSample_mysql
+  image: dgraziotin/mysql
+
+  environment:
+    MYSQL_ADMIN_PASS: "root"
+    MYSQL_USER_NAME: "nodejsSample"
+    MYSQL_USER_DB: "nodejsSample"
+    MYSQL_USER_PASS: "nodejsSample"
+    CREATE_MYSQL_BASIC_USER_AND_DB: "true"
